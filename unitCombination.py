@@ -39,12 +39,14 @@ def createCombination(num):
 def unitCombination(numOfUnit,unitsData):
   allPossibleCombination =pow(2,numOfUnit)
   UCM=np.zeros((allPossibleCombination,numOfUnit+2))
+    #UCM->Capacity ordering of the Units
+    
   for i in range(0,allPossibleCombination):
     combination=createCombination(i)
     sumOfPmax=0
     for n in range(0,numOfUnit):
       if combination[n]=='1':
-        # in matlab indices are 1 -indexed
+        # 1 means nth unit is Commited and 0 means UnCommited
         UCM[i,n+2]=1
         sumOfPmax=sumOfPmax+unitsData[n,1]
     UCM[i,0]=i #no of state
