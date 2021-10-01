@@ -1,4 +1,4 @@
-
+# Note: IHR/=1000 to reduce size of Fcost
 unitsNum = units[:,0].shape[0] # no of units
 print(unitsNum)
 
@@ -10,7 +10,7 @@ startCombination = 12 # L=12
 numOfTimes = 8
 
 #sorting Units by Full-Load Avg cost [Priority ordering]
-print(units)
+# print(units)
 sortedUnits = check
 
 #final result matrix
@@ -28,11 +28,11 @@ load = load_pattern[0][1]  # Power that load need it in first hour
 print('load ',load)
 for i in range(max(UCM.shape)-1 ,-1,-1):
   
-  print('ucm for loop ',i)
+  # print('ucm for loop ',i)
   if UCM[i][1]<load:
     break
-  print('check')
-  print(UCM[i][0])
+  # print('check')
+  # print(UCM[i][0])
   # total cost for stage 1
   result[i][0]=calculateFcost(UCM,1,0,UCM[i][0],12,sortedUnits,load,IHR,FC,NLC,SUC)
 
@@ -75,44 +75,12 @@ for t in range(1,numOfTimes):
 print('############## Minimum Total Cost of every Stage #############')
 
 print(result)
-print(resultCombination)
-
-for i in range(0,max(result[1,:].shape)):
-  print(i,end=' ')
 
 print(end='\n')
-
-for i in range(0,max(result.shape)):
-  print(UCM[i][0],end=' ')
-  for k in range(2,max(UCM[0,:].shape)):
-    print(UCM[i][k])
-
-  print(end=' ')
-
-  for j in range(0,max(result[0,:].shape)):
-    print(result[i][j],end=' ')
-
-  print(end='\n')
 
 print('##### Minimum Combination to every Stage ####')
 
-for i in range(0, max(result[1,:].shape)):
-  print(i,end=' ')
-
-print(end='\n')
-
-for i in range(0,max(result.shape)):
-  print(UCM[i][0],end=' ')
-
-  for k in range(2,max(UCM[1,:].shape)):
-    print(UCM[i][k])
-
-  print(end=' ')
-
-  for j in range(0, max(result[0,:].shape)):
-    print(resultCombination[i][j],end=' ')
-
-  print(end='\n')
+print(resultCombination)
 
 bestCombination=np.zeros((numOfTimes,1))
 for i in range(0,numOfTimes):
@@ -132,15 +100,5 @@ for i in range(0,numOfTimes):
   bestCombination[i]=minCombination
 
 print('#### Best Combination of every stage ####')
-for i in range(0,max(result[1,:].shape)):
-  print(str(i-1)+'->'+str(),end=' ')
 
-print(end='\n')
-
-for i in range(0,max(result[1,:].shape)):
-  if (i==(result[1,:].shape[0]-1)):
-    print(str(bestCombination)+'->'+str(startCombination),end=' ')
-  else:
-    print(str(bestCombination)+'->'+str(bestCombination[i+1]),end=' ')
-
-print(end='\n')
+print(bestCombination)
