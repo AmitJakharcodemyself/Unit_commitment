@@ -34,6 +34,8 @@ for i in range(max(UCM.shape)-1 ,-1,-1):
   # print('check')
   # print(UCM[i][0])
   # total cost for stage 1
+  #result(i,j)->cost to reach (Fcost) at state ith combination and (j+1)(j-0indexed) hour
+  #resultCombination means->from which combiation we can arrive at this state at mon possibble Fcost
   result[i][0]=calculateFcost(UCM,1,0,UCM[i][0],12,sortedUnits,load,IHR,FC,NLC,SUC)
 
   #minimum combination of Fcost for stage 1
